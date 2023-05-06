@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { DefaultModule } from './layouts/default/default.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeadersInterceptor } from './interceptors/headers.interceptor';
+import { PerfilComponent } from './modules/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HeadersInterceptor } from './interceptors/headers.interceptor';
     AuthComponent,
     NopagefoundComponent,
     ProyectosComponent,
-    TipocuentaComponent
+    TipocuentaComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
