@@ -1,0 +1,25 @@
+<div  class="text-center body-sing">
+    <main class="form-signin w-100 m-auto">
+        <form [formGroup]="FormLogin">
+          <img class="mb-4" src="../../../assets/img/inicioSesion.png" alt="" width="75" height="75">
+          <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
+      
+          <div class="form-floating">
+            <input type="email" class="form-control" formControlName="NombreUsuario" id="floatingInput" placeholder="usuario@ejemplo.com" autocomplete="off">
+            <label for="floatingInput">Usuario</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" formControlName="Password" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+      
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Recordarme
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" (click)="Login()">Ingresar</button>
+          <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+        </form>
+      </main>
+</div>
