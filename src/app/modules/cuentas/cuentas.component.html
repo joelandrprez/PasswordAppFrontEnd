@@ -2,7 +2,7 @@
 <div class="container">
   <div class="col-sm-12" style="float: center;">
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroCuenta">
+      <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroCuenta">
         Registrar cuenta &nbsp;<i class="fa-sharp fa-regular fa-address-card"></i>
       </button>
 
@@ -33,15 +33,17 @@
                 class="fa-solid fa-trash"></i></button>
           </td>
         </tr>
+
       </tbody>
     </table>
   </div>
 </div>
-
-
+<ng-container>
+  <app-modal-mantenimiento-cuenta></app-modal-mantenimiento-cuenta>
+</ng-container>
 
 <!-- Modal -->
-<div class="modal fade" id="registroCuenta" tabindex="-1" aria-labelledby="registroCuentaLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="registroCuenta" tabindex="-1" aria-labelledby="registroCuentaLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -100,4 +102,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

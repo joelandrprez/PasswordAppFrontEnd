@@ -16,6 +16,12 @@ import { DefaultModule } from './layouts/default/default.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeadersInterceptor } from './interceptors/headers.interceptor';
 import { PerfilComponent } from './modules/perfil/perfil.component';
+import { AngularComponent } from './modules/angular/angular.component';
+import { CsharpComponent } from './modules/csharp/csharp.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { HistorialAccionesComponent } from './modules/historial-acciones/historial-acciones.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { ModalMantenimientoCuentaComponent } from './modules/cuentas/children/modal-mantenimiento-cuenta/modal-mantenimiento-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +33,13 @@ import { PerfilComponent } from './modules/perfil/perfil.component';
     NopagefoundComponent,
     ProyectosComponent,
     TipocuentaComponent,
-    PerfilComponent
+    PerfilComponent,
+    AngularComponent,
+    CsharpComponent,
+    DashboardComponent,
+    HistorialAccionesComponent,
+    ModalMantenimientoCuentaComponent
+
   ],
   imports: [
     BrowserModule,
@@ -36,12 +48,13 @@ import { PerfilComponent } from './modules/perfil/perfil.component';
     AppRoutingModule,
     RouterModule,
     DefaultModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule,    
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

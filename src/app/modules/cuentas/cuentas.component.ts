@@ -22,15 +22,7 @@ export class CuentasComponent implements OnInit {
   };
   paginationInfo: ResponsePagination<ICuenta> = { totalGlobal: 0, totalFiltered: 0, records: [] };
   getClientesSub: any;
-
-  FormMantenimientoCuenta: FormGroup = new FormGroup({
-    TipoCuenta_Id: new FormControl(null,[Validators.required]),
-    Proyecto_Id: new FormControl(null,[Validators.required]),
-    Sitio: new FormControl('',[Validators.required,Validators.maxLength(1000),Validators.minLength(1)]),
-    Usuario: new FormControl('',[Validators.required,Validators.maxLength(50),Validators.minLength(1)]),
-    Password: new FormControl('',[Validators.required,Validators.maxLength(50),Validators.minLength(1)])
-  });
-  valorPassword:string = 'password';
+  
   constructor(private _cuentaService:CuentaService) { }
 
   ngOnInit(): void {
@@ -55,6 +47,7 @@ export class CuentasComponent implements OnInit {
       }
     });
   }
+
   CopiarContrasenia(id : number){
     this._cuentaService.getPassword(id).subscribe({
       next: (response:any) => {
@@ -75,38 +68,6 @@ export class CuentasComponent implements OnInit {
 
       }
     })
-  }
-
-  MostrarContrasenia(){
-
-      if(this.valorPassword === 'password'){
-        this.valorPassword = 'text';
-      }else{
-        this.valorPassword = 'password';
-      }
-  }
-
-  CerrarModalMantenimiento(){
-    this.FormMantenimientoCuenta.value.TipoCuenta = '';
-    this.FormMantenimientoCuenta.value.Sitio = '';
-    this.FormMantenimientoCuenta.value.Usuario = '';
-    this.FormMantenimientoCuenta.value.Password = '';
-  }
-
-  guardarCuenta(){
-    
-    this._cuentaService.postGuardarCuenta(this.FormMantenimientoCuenta.value).subscribe({
-      next: (response:any) => {
-        console.log(response);
-        this.ListadoCuentas();
-      },
-      error: (reason) => {
-        console.log(reason);
-      },
-      complete: () => {
-
-      }
-    })   
   }
 
 }

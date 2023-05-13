@@ -23,7 +23,7 @@ export class CuentaService {
   }
 
   getPassword(id: number):Observable<ICuenta>{
-    const url = `${this._url}/getPassword/${id}`;
+    const url = `${this._url}/cadena/${id}`;
     return this.http.get(url).pipe(map(response => <ICuenta>response));
   }
 

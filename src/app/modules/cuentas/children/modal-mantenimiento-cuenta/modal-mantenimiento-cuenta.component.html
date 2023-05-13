@@ -1,0 +1,60 @@
+<div class="modal fade" id="registroCuenta" tabindex="-1" aria-labelledby="registroCuentaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="registroCuentaLabel">Registro de cuenta</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="CerrarModalMantenimiento()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="FormMantenimientoCuenta">
+            <div class="mb-3">
+              <label for="tipoCuenta" class="form-label">Tipo cuenta</label>
+              <select class="form-select" formControlName="TipoCuenta_Id"
+                [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['TipoCuenta_Id'].hasError('required')}">
+                <option value="1">FTP</option>
+                <option value="2">Pagina Web</option>
+              </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="tipoCuenta" class="form-label">Proyecto</label>
+              <select class="form-select" formControlName="Proyecto_Id"
+                [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Proyecto_Id'].hasError('required')}">
+                <option value="7">CHINALCO</option>
+                <option value="8">KOMATSU</option>
+              </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="sitio" class="form-label">Sitio</label>
+              <input type="text" formControlName="Sitio" class="form-control" id="inputSitio"
+                [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Sitio'].hasError('required')}">
+            </div>
+            <div class="mb-3">
+              <label for="usuario" class="form-label">Usuario</label>
+              <input type="text" formControlName="Usuario" class="form-control" id="inputUsuario"
+                [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Usuario'].hasError('required')}">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <div class="input-group">
+                <input type="{{valorPassword}}" class="form-control" formControlName="Password" id="inputPassword"
+                  [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Password'].hasError('required')}">
+                <div class="input-group-text" (click)="MostrarContrasenia()" style="cursor: pointer;"><i
+                    class="fa-solid fa-eye" *ngIf="valorPassword=='password'"></i><i class="fa-solid fa-eye-slash"
+                    *ngIf="valorPassword=='text'"></i></div>
+              </div>
+            </div>
+  
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="CerrarModalMantenimiento()">Cerrar
+            <i class="fa-sharp fa-solid fa-xmark"></i></button>
+          <button type="button" class="btn btn-primary" (click)="guardarCuenta()"
+            [disabled]="FormMantenimientoCuenta.invalid">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
