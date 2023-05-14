@@ -78,11 +78,10 @@ export class ModalMantenimientoCuentaComponent implements OnInit,AfterViewInit,O
     
     this._cuentaService.postGuardarCuenta(this.FormMantenimientoCuenta.value).subscribe({
       next: (response:any) => {
-        console.log(response);
-        this.toastr.success('Hello world!', 'Toastr fun!');
+        this.toastr.success( response.titulo);
       },
       error: (reason) => {
-        console.log(reason);
+        this.toastr.error(reason.titulo);
       },
       complete: () => {
 

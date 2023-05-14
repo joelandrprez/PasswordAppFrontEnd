@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OptionsPagination, ResponsePagination } from '../comun/models/pagination.model';
 import { ICuenta } from './models/cuentas';
 import { CuentaService } from './services/cuenta.service';
+import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 @Component({
   selector: 'app-cuentas',
@@ -21,7 +22,8 @@ export class CuentasComponent implements OnInit {
   paginationInfo: ResponsePagination<ICuenta> = { totalGlobal: 0, totalFiltered: 0, records: [] };
   getClientesSub: any;
   cuentaEdicion?:ICuenta;
-  constructor(private _cuentaService:CuentaService) { }
+  constructor(private _cuentaService:CuentaService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.ListadoCuentas();
@@ -39,6 +41,8 @@ export class CuentasComponent implements OnInit {
       },
       error: (reason) => {
         console.log(reason);
+        
+        this.toastr.error(reason.error.detalle,reason.error.titulo);
       },
       complete: () => {
 
@@ -58,6 +62,7 @@ export class CuentasComponent implements OnInit {
         el.select();
         document.execCommand("copy");
         document.body.removeChild(el);
+        this.toastr.success(response.detalle,response.titulo);
       },
       error: (reason) => {
         console.log(reason);
