@@ -1,105 +1,69 @@
-
-<div class="container">
-  <div class="col-sm-12" style="float: center;">
-
-      <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroCuenta">
-        Registrar cuenta &nbsp;<i class="fa-sharp fa-regular fa-address-card"></i>
-      </button>
-
-
-  </div>
-</div>
-
-<div class="container">
-  <div class="col-sm-12">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">URL</th>
-          <th scope="col">Cuenta</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of this.paginationInfo.records">
-          <td><a href="{{item.sitio}}" target="_blank">{{item.sitio}}</a></td>
-          <td>{{item.usuario}}</td>
-          <td>
-            <button type="button" class="btn btn-primary hvr-float" (click)="CopiarContrasenia(item.id)">Copiar&nbsp;<i
-                class="fa-solid fa-copy"></i></button>&nbsp;
-            <button type="button" class="btn btn-success hvr-float" (click)="CopiarContrasenia(item.id)">Editar&nbsp;<i
-                class="fa-solid fa-pen-to-square"></i></button>&nbsp;
-            <button type="button" class="btn btn-danger hvr-float">Eliminar&nbsp;<i
-                class="fa-solid fa-trash"></i></button>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
-</div>
-<ng-container>
-  <app-modal-mantenimiento-cuenta></app-modal-mantenimiento-cuenta>
-</ng-container>
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="registroCuenta" tabindex="-1" aria-labelledby="registroCuentaLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="registroCuentaLabel">Registro de cuenta</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-          (click)="CerrarModalMantenimiento()"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="FormMantenimientoCuenta">
-          <div class="mb-3">
-            <label for="tipoCuenta" class="form-label">Tipo cuenta</label>
-            <select class="form-select" formControlName="TipoCuenta_Id"
-              [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['TipoCuenta_Id'].hasError('required')}">
-              <option value="1">FTP</option>
-              <option value="2">Pagina Web</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="tipoCuenta" class="form-label">Proyecto</label>
-            <select class="form-select" formControlName="Proyecto_Id"
-              [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Proyecto_Id'].hasError('required')}">
-              <option value="7">CHINALCO</option>
-              <option value="8">KOMATSU</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="sitio" class="form-label">Sitio</label>
-            <input type="text" formControlName="Sitio" class="form-control" id="inputSitio"
-              [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Sitio'].hasError('required')}">
-          </div>
-          <div class="mb-3">
-            <label for="usuario" class="form-label">Usuario</label>
-            <input type="text" formControlName="Usuario" class="form-control" id="inputUsuario"
-              [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Usuario'].hasError('required')}">
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <div class="input-group">
-              <input type="{{valorPassword}}" class="form-control" formControlName="Password" id="inputPassword"
-                [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Password'].hasError('required')}">
-              <div class="input-group-text" (click)="MostrarContrasenia()" style="cursor: pointer;"><i
-                  class="fa-solid fa-eye" *ngIf="valorPassword=='password'"></i><i class="fa-solid fa-eye-slash"
-                  *ngIf="valorPassword=='text'"></i></div>
+<div class="container-fluid px-4">
+  <h1 class="mt-4">Gestion cuentas</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Cuentas</li>
+  </ol>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-chart-bar me-1"></i>
+          Cuentas
+        </div>
+        <div class="card-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 text-start">
+                <div class="input-group">
+                  <input class="form-control" type="text" placeholder="Buscar" aria-label="Buscar"
+                    aria-describedby="btnNavbarSearch" />
+                  <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                      class="fas fa-search"></i></button>
+                </div>
+              </div>
+              <div class="col-sm-6 text-end">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroCuenta">
+                  Registrar &nbsp;<i class="fa-sharp fa-regular fa-address-card"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="mb-3"></div>
+            </div>
+            <div class="col-sm-12">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">URL</th>
+                    <th scope="col">Cuenta</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of this.paginationInfo.records">
+                    <td><a href="{{item.sitio}}" target="_blank">{{item.sitio}}</a></td>
+                    <td>{{item.usuario}}</td>
+                    <td>
+                      <button type="button" class="btn btn-primary hvr-float" (click)="CopiarContrasenia(item.id)"><i
+                          class="fa-solid fa-copy"></i></button>&nbsp;
+                      <button type="button" class="btn btn-success hvr-float" (click)="AbrilModalEdicion(item)"><i
+                          class="fa-solid fa-pen-to-square"></i></button>&nbsp;
+                      <button type="button" class="btn btn-danger hvr-float"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="CerrarModalMantenimiento()">Cerrar
-          <i class="fa-sharp fa-solid fa-xmark"></i></button>
-        <button type="button" class="btn btn-primary" (click)="guardarCuenta()"
-          [disabled]="FormMantenimientoCuenta.invalid">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
+        </div>
+        <div class="card-footer">
+          Actualizado a hoy a las 11:59 PM
+        </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>
+
+<ng-container>
+  <app-modal-mantenimiento-cuenta [ValoresForm]="cuentaEdicion"></app-modal-mantenimiento-cuenta>
+</ng-container>

@@ -22,6 +22,10 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { HistorialAccionesComponent } from './modules/historial-acciones/historial-acciones.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ModalMantenimientoCuentaComponent } from './modules/cuentas/children/modal-mantenimiento-cuenta/modal-mantenimiento-cuenta.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './layouts/default/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,7 @@ import { ModalMantenimientoCuentaComponent } from './modules/cuentas/children/mo
     CsharpComponent,
     DashboardComponent,
     HistorialAccionesComponent,
-    ModalMantenimientoCuentaComponent
+    ModalMantenimientoCuentaComponent,
 
   ],
   imports: [
@@ -49,7 +53,17 @@ import { ModalMantenimientoCuentaComponent } from './modules/cuentas/children/mo
     RouterModule,
     DefaultModule,
     HttpClientModule,
-    AgGridModule,    
+    AgGridModule,     
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      closeButton: true,  
+      progressBar: true,  
+      progressAnimation: 'increasing', 
+      preventDuplicates: true, 
+      enableHtml: true,
+      positionClass: 'toast-top-right', 
+      timeOut: 3000,
+    })
   ],
   providers: [
     // {
@@ -59,3 +73,4 @@ import { ModalMantenimientoCuentaComponent } from './modules/cuentas/children/mo
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+3

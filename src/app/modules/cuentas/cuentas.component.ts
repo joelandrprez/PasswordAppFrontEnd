@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OptionsPagination, ResponsePagination } from '../comun/models/pagination.model';
 import { ICuenta } from './models/cuentas';
 import { CuentaService } from './services/cuenta.service';
-import { Subscription } from 'rxjs';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+declare var $: any;
 @Component({
   selector: 'app-cuentas',
   templateUrl: './cuentas.component.html',
@@ -22,7 +20,7 @@ export class CuentasComponent implements OnInit {
   };
   paginationInfo: ResponsePagination<ICuenta> = { totalGlobal: 0, totalFiltered: 0, records: [] };
   getClientesSub: any;
-  
+  cuentaEdicion?:ICuenta;
   constructor(private _cuentaService:CuentaService) { }
 
   ngOnInit(): void {
@@ -68,6 +66,12 @@ export class CuentasComponent implements OnInit {
 
       }
     })
+  }
+  
+  AbrilModalEdicion(item:ICuenta){
+    this.cuentaEdicion =item;
+    
+    $("#registroCuenta").modal("show");
   }
 
 }
