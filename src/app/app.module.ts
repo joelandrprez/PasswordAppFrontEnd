@@ -25,7 +25,8 @@ import { ModalMantenimientoCuentaComponent } from './modules/cuentas/children/mo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { FooterComponent } from './layouts/default/components/footer/footer.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { FooterComponent } from './layouts/default/components/footer/footer.comp
       enableHtml: true,
       positionClass: 'toast-top-right', 
       timeOut: 3000,
-    })
+    }),
+    NgxSpinnerModule
   ],
   providers: [
     // {
@@ -73,4 +75,4 @@ import { FooterComponent } from './layouts/default/components/footer/footer.comp
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-3
+// https://www.npmjs.com/package/ngx-spinner

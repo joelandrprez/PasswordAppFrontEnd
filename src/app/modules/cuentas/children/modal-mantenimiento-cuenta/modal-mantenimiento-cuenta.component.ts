@@ -1,6 +1,8 @@
 import { AfterViewInit, Component,Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 declare var $: any;
 
 import { CuentaService } from '../../services/cuenta.service';
@@ -24,7 +26,9 @@ export class ModalMantenimientoCuentaComponent implements OnInit,AfterViewInit,O
   valorPassword:string = 'text';
 
   constructor(  private _cuentaService:CuentaService,
-                private toastr: ToastrService) { }
+                private toastr: ToastrService,
+                private spinner: NgxSpinnerService) { }
+
   ngOnDestroy(): void {
     $("#registroCuenta").modal("hide");
     this.FormMantenimientoCuenta  = new FormGroup({
@@ -79,9 +83,10 @@ export class ModalMantenimientoCuentaComponent implements OnInit,AfterViewInit,O
     this._cuentaService.postGuardarCuenta(this.FormMantenimientoCuenta.value).subscribe({
       next: (response:any) => {
         this.toastr.success( response.titulo);
+        this.CerrarModalMantenimiento();
       },
       error: (reason) => {
-        this.toastr.error(reason.titulo);
+        this.toastr.error(reason.error.detalle,reason.error.titulo);
       },
       complete: () => {
 
