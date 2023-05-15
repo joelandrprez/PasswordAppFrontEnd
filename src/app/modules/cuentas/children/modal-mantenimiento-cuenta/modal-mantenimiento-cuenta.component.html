@@ -39,13 +39,13 @@
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <div class="input-group">
-              <input type="{{valorPassword}}" class="form-control" formControlName="Password" id="inputPassword"
+              <input type="text" class="form-control" formControlName="Password" id="inputPassword"
                 [ngClass]="{'is-invalid': FormMantenimientoCuenta.controls['Password'].hasError('required')}">
 
-              <div class="input-group-text" (click)="MostrarContrasenia()" style="cursor: pointer;" >
-                <!-- <i [ngClass]="{'fa-solid fa-eye': valorPassword === 'password', 'fa-solid fa-eye-slash':  valorPassword === 'text'}"></i> -->
+              <!-- <div class="input-group-text" (click)="MostrarContrasenia()" style="cursor: pointer;" >
+                <i [ngClass]="{'fa-solid fa-eye': valorPassword === 'password', 'fa-solid fa-eye-slash':  valorPassword === 'text'}"></i>
                 <i [ngClass]="valorPassword ==='password' ? 'a-solid fa-eye' : 'fa-solid fa-eye-slash'"></i>
-              </div>
+              </div> -->
             </div>
 
           </div>

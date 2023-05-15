@@ -1,7 +1,7 @@
 import { AfterViewInit, Component,Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerService } from "ngx-spinner";
 
 declare var $: any;
 
@@ -79,28 +79,30 @@ export class ModalMantenimientoCuentaComponent implements OnInit,AfterViewInit,O
   }
 
   guardarCuenta(){
+    console.log('se guarda');
     
-    this._cuentaService.postGuardarCuenta(this.FormMantenimientoCuenta.value).subscribe({
-      next: (response:any) => {
-        this.toastr.success( response.titulo);
-        this.CerrarModalMantenimiento();
-      },
-      error: (reason) => {
-        this.toastr.error(reason.error.detalle,reason.error.titulo);
-      },
-      complete: () => {
+      this.spinner.show();
+    // this._cuentaService.postGuardarCuenta(this.FormMantenimientoCuenta.value).subscribe({
+    //   next: (response:any) => {
+    //     this.toastr.success( response.titulo);
+    //     this.CerrarModalMantenimiento();
+    //   },
+    //   error: (reason) => {
+    //     this.toastr.error(reason.error.detalle,reason.error.titulo);
+    //   },
+    //   complete: () => {
 
-      }
-    })   
+    //   }
+    // })   
   }
 
   MostrarContrasenia(){
-    if(this.valorPassword === 'password' ){
-      this.valorPassword = 'text';
-    }else{
-      this.valorPassword = 'password';
+    // if(this.valorPassword === 'password' ){
+    //   this.valorPassword = 'text';
+    // }else{
+    //   this.valorPassword = 'password';
 
-    }
+    // }
   }
 
   

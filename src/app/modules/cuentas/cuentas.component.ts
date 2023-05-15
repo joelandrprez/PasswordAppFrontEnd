@@ -3,6 +3,7 @@ import { OptionsPagination, ResponsePagination } from '../comun/models/paginatio
 import { ICuenta } from './models/cuentas';
 import { CuentaService } from './services/cuenta.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var $: any;
 @Component({
   selector: 'app-cuentas',
@@ -23,10 +24,14 @@ export class CuentasComponent implements OnInit {
   getClientesSub: any;
   cuentaEdicion?:ICuenta;
   constructor(private _cuentaService:CuentaService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
+    
     this.ListadoCuentas();
+
   }
 
   ngOnDestroy(): void {
@@ -41,11 +46,15 @@ export class CuentasComponent implements OnInit {
       },
       error: (reason) => {
         console.log(reason);
+        this.spinner.hide()
+        if (reason.error.titulo) 
+          this.toastr.error(reason.error.detalle,reason.error.titulo);
+        if (reason.statusText) 
+          this.toastr.error(reason.statusText,reason.name);        
         
-        this.toastr.error(reason.error.detalle,reason.error.titulo);
       },
       complete: () => {
-
+        this.spinner.hide()
       }
     });
   }
