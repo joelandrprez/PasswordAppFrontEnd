@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { OptionsPagination, ResponsePagination } from '../../comun/models/pagination.model';
 import { ICuenta } from '../models/cuentas';
 
-const base_url = environment.base_url;
+const base_url = environment.API_URL;
 
 @Injectable({
   providedIn: 'root'
