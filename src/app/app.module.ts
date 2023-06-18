@@ -16,8 +16,6 @@ import { DefaultModule } from './layouts/default/default.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeadersInterceptor } from './interceptors/headers.interceptor';
 import { PerfilComponent } from './modules/perfil/perfil.component';
-import { AngularComponent } from './modules/angular/angular.component';
-import { CsharpComponent } from './modules/csharp/csharp.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { HistorialAccionesComponent } from './modules/historial-acciones/historial-acciones.component';
 import { AgGridModule } from 'ag-grid-angular';
@@ -39,8 +37,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ProyectosComponent,
     TipocuentaComponent,
     PerfilComponent,
-    AngularComponent,
-    CsharpComponent,
     DashboardComponent,
     HistorialAccionesComponent,
     ModalMantenimientoCuentaComponent,

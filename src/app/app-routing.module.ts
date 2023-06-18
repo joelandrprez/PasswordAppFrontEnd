@@ -7,52 +7,44 @@ import { NopagefoundComponent } from './modules/nopagefound/nopagefound.componen
 import { ProyectosComponent } from './modules/proyectos/proyectos.component';
 import { TipocuentaComponent } from './modules/tipocuenta/tipocuenta.component';
 import { UsuariosComponent } from './modules/usuarios/usuarios.component';
-import { AngularComponent } from './modules/angular/angular.component';
-import { CsharpComponent } from './modules/csharp/csharp.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PerfilComponent } from './modules/perfil/perfil.component';
 import { HistorialAccionesComponent } from './modules/historial-acciones/historial-acciones.component';
 
 const routes: Routes = [
   {
-    path: 'gestioncuenta',
+    path: 'GestionCuenta',
     component: DefaultComponent,
     children: [
-      { path: 'cuentas',component: CuentasComponent },
-      { path: 'usuarios',component: UsuariosComponent },
-      { path: 'proyectos',component: ProyectosComponent },
-      { path: 'tipocuenta',component: TipocuentaComponent },
+      {path:'',redirectTo:'cuentas',pathMatch:'full'},
+      { path: 'Cuentas',component: CuentasComponent },
+      { path: 'Usuarios',component: UsuariosComponent },
+      { path: 'Proyectos',component: ProyectosComponent },
+      { path: 'Tipocuenta',component: TipocuentaComponent },
+
+    ]
+  }, 
+  {
+    path: 'Core',
+    component: DefaultComponent,
+    children: [
+      { path: '',component: DashboardComponent },
+      { path: 'Dashboard',component: DashboardComponent }
 
     ]
   },
   {
-    path: 'proyecto',
+    path: 'Perfil',
     component: DefaultComponent,
     children: [
-      { path: 'angular',component: AngularComponent },
-      { path: 'csharp',component: CsharpComponent },
-
-    ]
-  },  
-  {
-    path: 'core',
-    component: DefaultComponent,
-    children: [
-      { path: 'dashboard',component: DashboardComponent }
+      {path:'',redirectTo:'Me',pathMatch:'full'},
+      { path: 'Me',component: PerfilComponent },
+      { path: 'Historial',component: HistorialAccionesComponent }
 
     ]
   },
-  {
-    path: 'perfil',
-    component: DefaultComponent,
-    children: [
-      { path: 'me',component: PerfilComponent },
-      { path: 'historial',component: HistorialAccionesComponent }
-
-    ]
-  },
-  {path:'',redirectTo:'/core',pathMatch:'full'},
-  { path: 'login',component: AuthComponent},
+  {path:'',redirectTo:'/Core/Dashboard',pathMatch:'full'},
+  { path: 'Login',component: AuthComponent},
   { path: '**',component: NopagefoundComponent},
 
 ];

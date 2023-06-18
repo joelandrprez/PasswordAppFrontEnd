@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from './services/side.service';
+import { menu_navigate } from './models/menu_navigate';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -21,9 +24,31 @@ export class SidebarComponent implements OnInit {
     { path:'core/dashboard',titulo:'dashboard'}
   ];
 
-  constructor() { }
+
+
+  
+  dataMenu?: menu_navigate[] = [];
+
+  constructor(
+    private _apiMenu: MenuService
+  ) {
+
+
+   }
 
   ngOnInit(): void {
+    this.obtenerListadoMenu()
   }
-
+  obtenerListadoMenu(){
+    this._apiMenu.getListarMenu().subscribe({
+      next:
+        (data: any) => {
+          console.log(data);
+          
+          this.dataMenu = data;
+        },
+      error: (error) => {
+      }
+    });
+  }
 }

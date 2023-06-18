@@ -1,22 +1,32 @@
-<app-header></app-header>
-
+<!-- 
 <ngx-spinner
   template="<img src='../../../assets//img/load.gif'>"
   size="medium"
   type="ball-scale-multiple"
 >
 <p style="font-size: 20px; color: white">Loading...</p>
-</ngx-spinner>
+</ngx-spinner> -->
 
-<div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-        <app-sidebar></app-sidebar>
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+    
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+            <app-header></app-header>
+
+            <div class="container-fluid">
+                
+                <router-outlet></router-outlet>
+
+            </div>
+        </div>
+        <app-footer></app-footer>
+
     </div>
-    <div id="layoutSidenav_content">
-        <main>
-            <router-outlet></router-outlet>
-        </main>
-    </div>
+
 </div>
 
-<app-footer></app-footer>
+
+

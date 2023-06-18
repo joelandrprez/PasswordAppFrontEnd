@@ -4,19 +4,21 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { SidebarMenuComponent } from './components/sidebar/sidebar-menu/sidebar-menu.component';
 
 
 @NgModule({
   declarations: [
     SidebarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarMenuComponent
   ],
   exports:[
     SidebarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarMenuComponent
   ],
   imports: [
     CommonModule,
