@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { menu_navigate } from '../models/menu_navigate';
 
 @Component({
@@ -6,13 +6,10 @@ import { menu_navigate } from '../models/menu_navigate';
   templateUrl: './sidebar-menu.component.html',
   styleUrls: ['./sidebar-menu.component.css']
 })
-export class SidebarMenuComponent implements OnInit {
+export class SidebarMenuComponent {
 
-  @Input() item: menu_navigate[] = [];
+  @Input() data: menu_navigate[] = [];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

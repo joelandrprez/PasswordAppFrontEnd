@@ -16,7 +16,6 @@ const routes: Routes = [
     path: 'GestionCuenta',
     component: DefaultComponent,
     children: [
-      {path:'',redirectTo:'cuentas',pathMatch:'full'},
       { path: 'Cuentas',component: CuentasComponent },
       { path: 'Usuarios',component: UsuariosComponent },
       { path: 'Proyectos',component: ProyectosComponent },
@@ -28,7 +27,6 @@ const routes: Routes = [
     path: 'Core',
     component: DefaultComponent,
     children: [
-      { path: '',component: DashboardComponent },
       { path: 'Dashboard',component: DashboardComponent }
 
     ]

@@ -35,7 +35,6 @@ export class CuentasComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.getClientesSub.unsubscribe();
   }
 
   ListadoCuentas(){

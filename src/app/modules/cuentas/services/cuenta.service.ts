@@ -14,7 +14,7 @@ const base_url = environment.API_URL;
 })
 
 export class CuentaService {
-  private _url: string = base_url+"/api/v1/cuentas";
+  private _url: string = base_url+"/api/v1/Cuenta";
   constructor(private http:HttpClient) {}
   
   getListadoCuentas(options: OptionsPagination):Observable<ResponsePagination<ICuenta>>{
@@ -23,7 +23,7 @@ export class CuentaService {
   }
 
   getPassword(id: number):Observable<ICuenta>{
-    const url = `${this._url}/cadena/${id}`;
+    const url = `${this._url}/Cadena/${id}`;
     return this.http.get(url).pipe(map(response => <ICuenta>response));
   }
 

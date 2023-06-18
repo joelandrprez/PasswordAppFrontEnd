@@ -6,5 +6,5 @@ export interface menu_navigate {
   parentId?: number;
   icono: string;
   subMenu: menu_navigate[];
-  active_link_state:boolean
+  active_link_state:boolean;
 }
