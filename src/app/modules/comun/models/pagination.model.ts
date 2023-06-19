@@ -1,7 +1,7 @@
 export interface ResponsePagination<T> {
-    records: T[];
+    registros: T[];
     totalGlobal: number;
-    totalFiltered: number;
+    totalfiltrado: number;
 }
 
 export interface OptionsPagination {

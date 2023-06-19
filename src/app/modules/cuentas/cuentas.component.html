@@ -1,67 +1,45 @@
-<div class="container-fluid px-4">
-  <h1 class="mt-4">Gestion cuentas</h1>
-  <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Cuentas</li>
-  </ol>
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="card mb-4">
-        <div class="card-header">
-          <i class="fas fa-chart-bar me-1"></i>
-          Cuentas
-        </div>
-        <div class="card-body">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6 text-start">
-                <div class="input-group">
-                  <input class="form-control" type="text" placeholder="Buscar" aria-label="Buscar"
-                    aria-describedby="btnNavbarSearch" />
-                  <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
-                      class="fas fa-search"></i></button>
-                </div>
-              </div>
-              <div class="col-sm-6 text-end">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroCuenta">
-                  Registrar &nbsp;<i class="fa-sharp fa-regular fa-address-card"></i>
-                </button>
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="mb-3"></div>
-            </div>
-            <div class="col-sm-12">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">URL</th>
-                    <th scope="col">Cuenta</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of this.paginationInfo.records">
-                    <td><a href="{{item.sitio}}" target="_blank">{{item.sitio}}</a></td>
-                    <td>{{item.usuario}}</td>
-                    <td>
-                      <button type="button" class="btn btn-primary hvr-float" (click)="CopiarContrasenia(item.id)"><i
-                          class="fa-solid fa-copy"></i></button>&nbsp;
-                      <button type="button" class="btn btn-success hvr-float" (click)="AbrilModalEdicion(item)"><i
-                          class="fa-solid fa-pen-to-square"></i></button>&nbsp;
-                      <button type="button" class="btn btn-danger hvr-float"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          Actualizado a hoy a las 11:59 PM
-        </div>
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Cuentas</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Listado de cuentas</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Sitio</th>
+              <th>Usuario</th>
+              <th>Opciones</th>
+              <th>Fecha Creación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of paginationInfo.registros">
+              <td><a href="{{ item.sitio }}" target="_blank">{{ item.sitio }}</a>
+                </td>
+              <td>{{ item.usuario }}</td>
+              <td>
+                <button class="btn btn-success rounded-circle" title="Copiar constraseña" (click)="CopiarContrasenia(item.id)"><i class="fas fa-copy"></i></button>
+                &nbsp;
+                <button class="btn btn-primary rounded-circle" title="Editar"><i class="fas fa-edit"></i></button>
+                &nbsp;
+                <button class="btn btn-danger rounded-circle" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+              
+              </td>
+              <td>{{ item.fechaCreacion | date: 'short' }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+
 </div>
 
 <ng-container>

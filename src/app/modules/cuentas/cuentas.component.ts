@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { OptionsPagination, ResponsePagination } from '../comun/models/pagination.model';
 import { ICuenta } from './models/cuentas';
 import { CuentaService } from './services/cuenta.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Title } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
+
+
 declare var $: any;
 @Component({
   selector: 'app-cuentas',
@@ -20,18 +24,19 @@ export class CuentasComponent implements OnInit {
     orderBy: '',
     orderDir: '',
   };
-  paginationInfo: ResponsePagination<ICuenta> = { totalGlobal: 0, totalFiltered: 0, records: [] };
+  paginationInfo: ResponsePagination<ICuenta> = { totalGlobal: 0, totalfiltrado: 0, registros: [] };
   getClientesSub: any;
   cuentaEdicion?:ICuenta;
   constructor(private _cuentaService:CuentaService,
               private toastr: ToastrService,
-              private spinner: NgxSpinnerService) { }
+              private spinner: NgxSpinnerService,
+              private titleService: Title, 
+              @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Gestion Cuentas - Listado');
     this.spinner.show();
-    
     this.ListadoCuentas();
-
   }
 
   ngOnDestroy(): void {
@@ -41,7 +46,6 @@ export class CuentasComponent implements OnInit {
     this._cuentaService.getListadoCuentas(this.options).subscribe({
       next: (response:any) => {
         this.paginationInfo = response.data;
-
       },
       error: (reason) => {
         console.log(reason);
@@ -50,7 +54,6 @@ export class CuentasComponent implements OnInit {
           this.toastr.error(reason.error.detalle,reason.error.titulo);
         if (reason.statusText) 
           this.toastr.error(reason.statusText,reason.name);        
-        
       },
       complete: () => {
         this.spinner.hide()
@@ -59,10 +62,11 @@ export class CuentasComponent implements OnInit {
   }
 
   CopiarContrasenia(id : number){
+    this.spinner.show();
     this._cuentaService.getPassword(id).subscribe({
       next: (response:any) => {
         const el = document.createElement("textarea");
-        el.value = response.data!.password;
+        el.value = response.data!.cadena;
         el.setAttribute("readonly", "");
         el.style.position = "absolute";
         el.style.left = "-9999px";
@@ -73,17 +77,17 @@ export class CuentasComponent implements OnInit {
         this.toastr.success(response.detalle,response.titulo);
       },
       error: (reason) => {
-        console.log(reason);
+        this.spinner.hide()
+        this.toastr.error(reason.error.detalle,reason.error.titulo);
       },
       complete: () => {
-
+        this.spinner.hide()
       }
     })
   }
   
   AbrilModalEdicion(item:ICuenta){
     this.cuentaEdicion =item;
-    
     $("#registroCuenta").modal("show");
   }
 

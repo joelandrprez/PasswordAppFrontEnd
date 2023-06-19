@@ -3,4 +3,7 @@ export interface ICuenta {
     usuario: string;
     password: string;
     sitio: string;
+    fechaCreacion:Date;
+    fechaModificacion:Date;
+
 }

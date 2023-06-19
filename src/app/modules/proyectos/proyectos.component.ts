@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-proyectos',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProyectosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title, 
+              @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Gestion Cuentas - Proyectos');
   }
 
 }
